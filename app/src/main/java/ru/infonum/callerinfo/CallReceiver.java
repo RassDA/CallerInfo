@@ -51,6 +51,8 @@ public class CallReceiver extends BroadcastReceiver {
     JSONObject json;
     SharedPreferences sharedPreferences;
 
+    final boolean DBG_show_in_main = false;
+
 
     @Override
     public void onReceive(Context ctx, Intent intent) { //распознан входящий вызов
@@ -95,15 +97,6 @@ public class CallReceiver extends BroadcastReceiver {
                 // лезем на страницу вызывающего телефона и получаем все его данные, какие есть
                 String text = postString(context.getString(R.string.SITE_URL) + context.getString(R.string.SITE_API_READ), "", phoneNumber.trim());
 
-                //и так работает
-                //context.startActivity(new Intent().setClass(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-
-                Intent intentMain = new Intent();
-                intentMain.setClass(context, MainActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) //обязательный
-                        .putExtra("num", phoneNumber)
-                        .putExtra("dev", text);
-                context.startActivity(intentMain);
 
                 //подбираем информацию для окна из полученной строки
 
@@ -120,9 +113,23 @@ public class CallReceiver extends BroadcastReceiver {
                 //}
                 //JSONArray jarr = text.toJSONArray();
 
-                //showWindow(context, phoneNumber, "\n" + text.substring(text.lastIndexOf("{"))
-                //        .replace("\\"+"\"", "\"").replace("\\"+"\\"+"\\", "")
-                //        .replace(",", "\n")); //чудеса, если использовать локальную переменную
+
+                if (context.getString(R.string.DBG_show_in_main).equals("false")) {
+                    //показываем во всплывающем окне
+                    showWindow(context, phoneNumber, "\n" + text.substring(text.lastIndexOf("{"))
+                            .replace("\\" + "\"", "\"").replace("\\" + "\\" + "\\", "")
+                            .replace(",", "\n")); //чудеса, если использовать локальную переменную
+
+                } else {
+                    //переносим вывод на экран главной активности
+                    Intent intentMain = new Intent();
+                    intentMain.setClass(context, MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) //обязательный
+                            .putExtra(context.getString(R.string.NUM_I), phoneNumber)
+                            .putExtra(context.getString(R.string.DEV_I), text);
+                    context.startActivity(intentMain);
+                }
+
 
             } else if (phoneState.equals(TelephonyManager.EXTRA_STATE_OFFHOOK)) {
                 //Телефон находится в режиме звонка (набор номера / разговор) - закрываем окно, что бы не мешать
@@ -228,6 +235,7 @@ public class CallReceiver extends BroadcastReceiver {
 
 }
 
+
 class PostTask extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
@@ -269,7 +277,6 @@ class PostTask extends AsyncTask<String, String, String> {
 
 
 }
-
 /*
 
 // http://www.pvsm.ru/android/22342

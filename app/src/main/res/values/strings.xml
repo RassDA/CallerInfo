@@ -16,5 +16,8 @@
     <string name="MAIN_TXT">Инфонум\nНомер-информер телефонный</string>
     <string name="MAIN_TXT2">Подтвердите свой номер.\nнажмите кнопку ПОДТВЕРДИТЬ\nВыберите свой номер из телефонной книги\nили введите вручную</string>
     <string name="MAIN_TXT3">Отправьте СМС себе как обычно.\nНикаких дополнительных действий не потребуется.</string>
+    <string name="DBG_show_in_main">false</string>
+    <string name="NUM_I">num</string>
+    <string name="DEV_I">dev</string>
 
 </resources>

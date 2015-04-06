@@ -3,6 +3,8 @@ package ru.infonum.callerinfo;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ public class MainActivity extends Activity {
     String phoneNum;
     TextView textViewMain;
     ScrollView scrollViewMain;
+    Button button;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,7 @@ public class MainActivity extends Activity {
         scrollViewMain = (ScrollView) findViewById(R.id.scrollViewMain);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 
-        OwnNum ownNum = new OwnNum(this);
+        final OwnNum ownNum = new OwnNum(this);
 
         phoneNum = ownNum.get();
 
@@ -32,14 +35,24 @@ public class MainActivity extends Activity {
 
         }
 
-        Intent intent = getIntent();
-        String phone = intent.getStringExtra("num");
-        String text = intent.getStringExtra("dev");
-        if (text != null) textViewMain.setText(phone + "\n" + text);
+        if (!getString(R.string.DBG_show_in_main).equals("false")) {//вместо всплывающего окна - на главной
+            Intent intent = getIntent();
+            String phone = intent.getStringExtra(getString(R.string.NUM_I));
+            String text = intent.getStringExtra(getString(R.string.DEV_I));
+            if (text != null) textViewMain.setText(phone + "\n" + text);
+        }
+
+        button = (Button) findViewById(R.id.button);
+        View.OnClickListener oclButton = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneNum = ownNum.interact(phoneNum); //запустить процедуру установления своего номера
+            }
+        };
+        button.setOnClickListener(oclButton);
 
 
     }
-
 
     @Override
     protected void onResume() {
