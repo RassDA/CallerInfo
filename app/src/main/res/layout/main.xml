@@ -4,26 +4,44 @@
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:background="#DDDDDD"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:visibility="visible">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="385dp"
-        android:text="Инфонум\nНомер-информер телефонный"
-        android:id="@+id/textViewMain"
-        android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#ff275e0a"
+        android:layout_height="276dp"
+        android:id="@+id/scrollViewMain"
         android:background="#ffdbff7a"
-        android:layout_weight="1.01" />
+        android:layout_weight="0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Инфонум\nНомер-информер телефонный"
+            android:id="@+id/textViewMain"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#ff275e0a"
+            android:background="#ffdbff7a"
+            android:layout_weight="0"
+            />
+    </ScrollView>
 
     <Button
-        android:layout_width="375dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ПОДТВЕРДИТЬ"
         android:id="@+id/buttonSend"
-        android:layout_gravity="center_horizontal" />
+        android:layout_weight="0"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/editText"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible" />
 
 </LinearLayout>
 
