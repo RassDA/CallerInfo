@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Close">ЗАКРЫТЬ</string>
+    <string name="text_in_num">Номер</string>
+    <string name="text_num_placeholder">XXX</string>
+    <string name="text_main_screen">Инфонум:\nзапрос отзывов\nпо номеру</string>
+    <string name="text_detail">-27 +35\nПОДРОБНЕЕ</string>
+    <string name="SITE_URL">http://checkin.infonum.ru/</string>
+    <string name="SITE_API_READ">api/read.php/</string>
+    <string name="SITE_API_WRITE">api/write.php/</string>
+    <string name="SITE_NUMPAGE">tel/</string>
+    <string name="OWN_NUM">OWN_NUM</string>
+    <string name="OWN_NUM_FILE">OWN_NUM_FILE</string>
+    <string name="OWN_NUM_VRIFIED">OWN_NUM_VRIFIED</string>
+    <string name="MAIN_TXT">Инфонум\nНомер-информер телефонный</string>
+    <string name="MAIN_TXT2">Подтвердите свой номер.\nнажмите кнопку ПОДТВЕРДИТЬ\nВыберите свой номер из телефонной книги\nили введите вручную</string>
+    <string name="MAIN_TXT3">Отправьте СМС себе как обычно.\nНикаких дополнительных действий не потребуется.</string>
+
+</resources>
