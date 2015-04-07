@@ -30,33 +30,24 @@ public class MainActivity extends Activity {
 
         if (!ownNum.state()) {
             //предложить выбор: пройти верификацию сразу или отложить, вдруг само проверится
+
             phoneNum = ownNum.interact(phoneNum); //запустить процедуру установления своего номера
-            phoneNum = ownNum.format(phoneNum); //проверить существование, допустимость и привести
+            //phoneNum = ownNum.formatSave(phoneNum); //проверить существование, допустимость и привести
 
         }
 
-        if (!getString(R.string.DBG_show_in_main).equals("false")) {//вместо всплывающего окна - на главной
+        if (!getString(R.string.DEBUG_show_in_main).equals("false")) {//вместо всплывающего окна - на главной
             Intent intent = getIntent();
             String phone = intent.getStringExtra(getString(R.string.NUM_I));
             String text = intent.getStringExtra(getString(R.string.DEV_I));
-            if (text != null) textViewMain.setText(phone + "\n" + text);
+            if (text != null) textViewMain.setText(phone + "\n" + text); //показать принятое ресивером
         }
-
-        button = (Button) findViewById(R.id.button);
-        View.OnClickListener oclButton = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                phoneNum = ownNum.interact(phoneNum); //запустить процедуру установления своего номера
-            }
-        };
-        button.setOnClickListener(oclButton);
-
 
     }
 
     @Override
     protected void onResume() {
-        super .onResume();
+        super.onResume();
 
 
 

@@ -1,23 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="Close">ЗАКРЫТЬ</string>
-    <string name="text_in_num">Номер</string>
-    <string name="text_num_placeholder">XXX</string>
-    <string name="text_main_screen">Инфонум:\nзапрос отзывов\nпо номеру</string>
-    <string name="text_detail">-27 +35\nПОДРОБНЕЕ</string>
+    <!-- TODO перcональная информация - удалить-->
+    <string name="TESTTEL">+79119148047</string>
+    <string name="TESTTEL2">+79910074109</string>
+    <string name="TESTTEL3">+79500069461</string>
+    <!-- TODO перcональная информация - удалить-->
+
     <string name="SITE_URL">http://checkin.infonum.ru/</string>
     <string name="SITE_API_READ">api/read.php/</string>
     <string name="SITE_API_WRITE">api/write.php/</string>
     <string name="SITE_NUMPAGE">tel/</string>
+
     <string name="OWN_NUM">OWN_NUM</string>
     <string name="OWN_NUM_FILE">OWN_NUM_FILE</string>
     <string name="OWN_NUM_VRIFIED">OWN_NUM_VRIFIED</string>
+
+    <string name="Close">ЗАКРЫТЬ</string>
     <string name="MAIN_TXT">Инфонум\nНомер-информер телефонный</string>
     <string name="MAIN_TXT2">Подтвердите свой номер.\nнажмите кнопку ПОДТВЕРДИТЬ\nВыберите свой номер из телефонной книги\nили введите вручную</string>
     <string name="MAIN_TXT3">Отправьте СМС себе как обычно.\nНикаких дополнительных действий не потребуется.</string>
-    <string name="DBG_show_in_main">false</string>
+    <string name="text_in_num">Номер</string>
+    <string name="text_num_placeholder">XXX</string>
+    <string name="text_main_screen">Инфонум:\nзапрос отзывов\nпо номеру</string>
+    <string name="text_detail">-27 +35\nПОДРОБНЕЕ</string>
+
     <string name="NUM_I">num</string>
     <string name="DEV_I">dev</string>
+
+    <string name="DEBUG_show_in_main">false</string>
+
+
+    <!-- для SmsAuth-->
+    <string name="action_settings">Настройки</string>
+
+    <string name="AUTH_STR">http://infonum.ru/smsauth</string>
+    <string name="AUTH_STR_RAND">http://infonum.ru/smsauth?rand=</string>
+
+    <string name="cannot_send_sms">SmsAuth: Невозможно отправить смс</string>
+    <string name="sms_not_receive">SmsAuth: смс не принято</string>
+    <string name="sms_receive">SmsAuth: смс принято</string>
+    <string name="sms_not_send_no_radio">- смс не отправлено - нет связи</string>
+    <string name="sms_not_send">- смс не отправлено - параметры не заполнены</string>
+    <string name="sms_not_send_no_service">- смс не отправлено - отказ в обслуживании</string>
+    <string name="sms_send">--смс отправлено</string>
+
+    <string name="KEY_RND">auth_rand</string>
+    <string name="KEY_SMS">authSms</string>
+
+    <string name="PREF_FILE_NAME">SmsData</string>
+
+    <string name="Text1">
+        Аутентификация по смс\n
+        Проверка номера для привязки аккаунта.\n\n
+
+        Введите ваш номер телефона для привязки.\n
+        Подтвердите отправку смс.\n
+
+        Если вы привязываете к номеру в другом устройстве,\n
+        отправьте с НЕГО назад полученную смс в неизмененном виде.\n
+
+        Аутентификация произойдет автоматически после получения ответного смс.
+    </string>
+
+    <string name="Text2">
+        Будет отправлена одна смс по вашему тарифу\n
+        с вашего номера в ЭТОМ устройстве на НЕГО же\n
+        или на ДРУГОЙ ваш номер в другом устройстве.\n\n
+    </string>
+    <string name="PDU_BODY_F_NAME">sms_body</string>
+    <string name="PDU_ADDRESS_F_NAME">address</string>
+    <string name="PDU_TYPE_F_NAME">vnd.android-dir/mms-sms</string>
+    <string name="SMS_AUTH_HEAD">Смс для авторизации</string>
 
 </resources>

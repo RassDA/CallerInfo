@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:id="@+id/linearLayout">
+
+    <!-- Комментарии -->
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Text1" />
+
+    <EditText
+        android:id="@+id/editTextPhoneNo"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:text="@string/TESTTEL2"
+        android:textStyle="bold"
+        android:phoneNumber="true"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Не изменяйте текст смс "
+        android:editable="false" />
+
+    <EditText
+        android:id="@+id/editTextSMS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textShortMessage"
+        android:text="Infonum.ru"
+        android:enabled="false" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Использовать для отправки смс стандартное системное смс-приложение Андроид "
+        android:checked="false"/>
+
+    <Button
+        android:id="@+id/btnSendSms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Отправить смс"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

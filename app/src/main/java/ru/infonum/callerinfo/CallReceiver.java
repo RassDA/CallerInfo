@@ -49,10 +49,6 @@ public class CallReceiver extends BroadcastReceiver {
     private static ViewGroup windowLayout;
     Context context;
     JSONObject json;
-    SharedPreferences sharedPreferences;
-
-    final boolean DBG_show_in_main = false;
-
 
     @Override
     public void onReceive(Context ctx, Intent intent) { //распознан входящий вызов
@@ -114,7 +110,7 @@ public class CallReceiver extends BroadcastReceiver {
                 //JSONArray jarr = text.toJSONArray();
 
 
-                if (context.getString(R.string.DBG_show_in_main).equals("false")) {
+                if (context.getString(R.string.DEBUG_show_in_main).equals("false")) {
                     //показываем во всплывающем окне
                     showWindow(context, phoneNumber, "\n" + text.substring(text.lastIndexOf("{"))
                             .replace("\\" + "\"", "\"").replace("\\" + "\\" + "\\", "")
@@ -185,7 +181,7 @@ public class CallReceiver extends BroadcastReceiver {
 
                 if (phone.length() > 1) {
                     //работает только этот вариант
-                    //открываем в браузере в новом окне по нажатию на кнопку
+                    //открываем браузер в новой активности по нажатию на кнопку
                     final Intent intent = new Intent(Intent.ACTION_VIEW,
                             Uri.parse(context.getString(R.string.SITE_URL) +
                                     context.getString(R.string.SITE_NUMPAGE) + phone.replace("+", "")));

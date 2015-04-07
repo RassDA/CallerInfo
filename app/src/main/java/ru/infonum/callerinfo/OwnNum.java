@@ -1,6 +1,7 @@
 package ru.infonum.callerinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 public class OwnNum {
@@ -58,13 +59,13 @@ public class OwnNum {
 
         for (int i=0; i< buf.length(); i++){
             //оставляем в строке только цифры и первый плюс, если он есть
-            if ( Character.isDigit(buf.charAt(i)) || buf.substring(0,0).equals("+") ) {
+            if ( Character.isDigit(buf.charAt(i)) || (i==0 && buf.substring(0,0).equals("+")) ) {
                 num = num.concat(buf.substring(i,i));
             }
         }
 
         if ( buf.length() < 11 && buf.length() > 15) {
-            save("");
+            //save("");
             return "";
         }
 
@@ -72,23 +73,38 @@ public class OwnNum {
         if (num.substring(0,0).equals("8") && num.length() == 11){
             num = "+7" + num.substring(1);
         }else{
-            save("");
+            //save("");
             return "";
         }
         if (num.contains("+7") && num.length() != 12){
-            save("");
+            //save("");
             return "";
         }
         //про остальные типы номеров ничего не знаю
         return num;
-    }
+        }
 
-    public  String interact(String s) {
-        //просит пользователя ввести свой номер и верифицирует его по установленной методике
-        //через запрос на ввод своего номера и т.д.
-        String out = format(s);
-        save(out);
+        public String formatSave(String phone) {
+            String s = format(phone);
+            save(s);
+            return s;
+        }
+
+        public  String interact(String s) {
+            //просит пользователя ввести свой номер и верифицирует его по установленной методике
+            //через запрос на ввод своего номера и т.д.
+            //вызывает отдельную активность
+
+            //переносим вывод на экран главной активности
+            Intent intent = new Intent();
+            intent.setClass(context, SmsAuthMain.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //обязательный
+            context.startActivity(intent);
+
+            String out = format(s);
+            //save(out);
         return out;
     }
+
 
 }

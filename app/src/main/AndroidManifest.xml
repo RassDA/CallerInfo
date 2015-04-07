@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application android:label="Инфонум: Телефонные страницы номеров"
@@ -21,12 +24,35 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SmsAuthMain" android:label="@string/SMS_AUTH_HEAD" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <receiver android:name=".CallReceiver">
-            <intent-filter android:priority="-1">
-                <action android:name="android.intent.action.PHONE_STATE"/>
+            <intent-filter android:priority="-1">
+                <action android:name="android.intent.action.PHONE_STATE"/>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
-    </application>
+
+        <receiver android:name=".SmsAuthReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.provider.Telephony.SMS_SENT"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".SmsUtils" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="SMS_SENT"/>
+                <action android:name="SMS_DELIVERED"/>
+            </intent-filter>
+        </receiver>
+
+     </application>
 
 </manifest>
