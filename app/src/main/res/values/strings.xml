@@ -75,5 +75,6 @@
     <string name="PDU_ADDRESS_F_NAME">address</string>
     <string name="PDU_TYPE_F_NAME">vnd.android-dir/mms-sms</string>
     <string name="SMS_AUTH_HEAD">Смс для авторизации</string>
+    <string name="OWN_NUM_SETTINGS" />
 
 </resources>

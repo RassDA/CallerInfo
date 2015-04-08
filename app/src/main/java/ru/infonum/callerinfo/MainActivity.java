@@ -1,14 +1,16 @@
 package ru.infonum.callerinfo;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import static ru.infonum.callerinfo.Utils.requestSettings;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static ru.infonum.callerinfo.Utils.requestAppSettings;
+import static ru.infonum.callerinfo.Utils.toJsonObj;
 
 public class MainActivity extends Activity {
 
@@ -27,8 +29,17 @@ public class MainActivity extends Activity {
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 
         //загрузить отладочные настройки с сайта
-        String paramS = requestSettings();
-        textViewMain.setText(paramS);
+        String response = requestAppSettings();
+
+        JSONObject js = toJsonObj(response);
+        try {
+            response = js.get("1").toString() + "/" +js.get("2").toString();
+        } catch (JSONException e) {
+            Log.debug("\nError parsing data " + e.toString());
+        }
+        textViewMain.setText(response);
+
+
 
 /*
 
