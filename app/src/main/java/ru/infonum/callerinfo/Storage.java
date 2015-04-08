@@ -15,6 +15,8 @@ public class Storage {
     static Context context;
 
     static boolean fromSite = false;
+    static boolean extInitialized = false;
+    static boolean innerInitialized = false;
     static String[] array;
     static JSONObject js;
 
@@ -66,6 +68,28 @@ public class Storage {
 
 
         return s;
+    }
+
+
+    public static void InitExtSettings() {
+
+        //читаем с сайта набор пар в объект
+        String s = requestAppSettings();
+        if (! s.equals("")) {
+            s = selectJsonLastObj(s);
+            js = toJsonObj(s);          // объект там
+            extInitialized = true;
+        }else {
+            extInitialized = false;
+        }
+    }
+
+    public static String[] InitInnerSettings() {
+        //задача: получить объект пар
+
+        String[] sa = context.getResources().getStringArray(R.array.string_array_name);
+
+        return sa;
     }
 
 

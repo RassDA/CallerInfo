@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static ru.infonum.callerinfo.Storage.InitInnerSettings;
 import static ru.infonum.callerinfo.Storage.getResStrValByName;
 import static ru.infonum.callerinfo.Storage.setMyContext;
 import static ru.infonum.callerinfo.Utils.requestAppSettings;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity {
         }
 
 
-        textViewMain.setText(response + " | " + getResStrValByName( "SITE_URL", true) );
+        textViewMain.setText(response + " | " + InitInnerSettings()[0] + InitInnerSettings()[10]);
 
 
 /*

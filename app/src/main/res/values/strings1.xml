@@ -1,15 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="field_name">Значение поля по ссылке</string>
-
     <string-array name="string_array_name">
 
-        <item>field_name</item>
-        <item>text_string2</item>
-        <item>text_string3</item>
-        <item>text_string4</item>
-        <item>text_string5</item>
+        <item>@string/TESTTEL</item>
+        <item>@string/TESTTEL2</item>
+        <item>@string/TESTTEL3</item>
+
+        <item>@string/APP_PARAMETERS_PAGE</item>
+
+        <item>@string/SITE_URL</item>
+        <item>@string/SITE_API_READ</item>
+        <item>@string/SITE_API_WRITE</item>
+        <item>@string/SITE_NUMPAGE</item>
+
+        <item>@string/OWN_NUM</item>
+        <item>@string/OWN_NUM_FILE</item>
+        <item>@string/OWN_NUM_VRIFIED</item>
+
+        <item>@string/Close</item>
+        <item>@string/MAIN_TXT</item>
+        <item>@string/MAIN_TXT2</item>
+        <item>@string/MAIN_TXT3</item>
+        <item>@string/text_in_num</item>
+        <item>@string/text_num_placeholder</item>
+        <item>@string/text_main_screen</item>
+        <item>@string/text_detail</item>
+
+        <item>@string/NUM_I</item>
+        <item>@string/DEV_I</item>
+
+        <item>@string/DEBUG_show_in_main</item>
+
+        <item>@string/AUTH_STR</item>
+        <item>@string/AUTH_STR_RAND</item>
+
+        <item>@string/cannot_send_sms</item>
+        <item>@string/sms_not_receive</item>
+        <item>@string/sms_receive</item>
+        <item>@string/sms_not_send_no_radio</item>
+        <item>@string/sms_not_send</item>
+        <item>@string/sms_not_send_no_service</item>
+        <item>@string/sms_send</item>
+
+        <item>@string/KEY_RND</item>
+        <item>@string/KEY_SMS</item>
+
+        <item>@string/PREF_FILE_NAME</item>
+
+        <item>@string/Text1</item>
+        <item>@string/Text2</item>
+
+        <item>@string/PDU_BODY_F_NAME</item>
+        <item>@string/PDU_ADDRESS_F_NAME</item>
+        <item>@string/PDU_TYPE_F_NAME</item>
+        <item>@string/SMS_AUTH_HEAD</item>
+        <item>@string/OWN_NUM_SETTINGS</item>
 
     </string-array>
 

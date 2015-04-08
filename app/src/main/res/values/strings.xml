@@ -35,7 +35,6 @@
 
 
     <!-- для SmsAuth-->
-    <string name="action_settings">Настройки</string>
 
     <string name="AUTH_STR">http://infonum.ru/smsauth</string>
     <string name="AUTH_STR_RAND">http://infonum.ru/smsauth?rand=</string>
