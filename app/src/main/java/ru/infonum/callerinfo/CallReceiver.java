@@ -3,11 +3,9 @@ package ru.infonum.callerinfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import ru.infonum.callerinfo.Utils.*;
+
+import static ru.infonum.callerinfo.Utils.postString;
+
 
 //TODO сделать локальное хранилище для собственного номера
 //TODO вынести обработку из ресивера в запускаемый сервис
@@ -47,7 +49,7 @@ public class CallReceiver extends BroadcastReceiver {
     private static boolean incomingCall = false;
     private static WindowManager windowManager;
     private static ViewGroup windowLayout;
-    Context context;
+    static Context context;
     JSONObject json;
 
     @Override
@@ -203,78 +205,9 @@ public class CallReceiver extends BroadcastReceiver {
         }
     }
 
-
-
-    public String postString(String url, String param1, String param2) {
-
-        String response = "";
-
-        PostTask postTask = new PostTask();
-        postTask.execute(url, param1, param2); // post-запрос по этому адресу и этими пост-параметрами
-
-        try {
-            response = postTask.get();
-            if (response == null) response = "";
-
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        Toast.makeText(context, "[1]=" + param1 + " [2]=" + param2, Toast.LENGTH_LONG).show();
-        return response;
-
-    }
-
-
 }
 
-
-class PostTask extends AsyncTask<String, String, String> {
-    @Override
-    protected String doInBackground(String... params) {
-
-        try {
-            //создаем запрос на сервер
-            DefaultHttpClient hc = new DefaultHttpClient();
-            ResponseHandler<String> res = new BasicResponseHandler();
-            //он у нас будет посылать post запрос
-            //HttpPost postMethod = new HttpPost("http://checkin.infonum.ru/api/read.php");
-            HttpPost postMethod = new HttpPost(params[0]);
-
-            //будем передавать два параметра
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("text", params[1]));
-            //nameValuePairs.add(new BasicNameValuePair("phone", "+79500069461"));
-            nameValuePairs.add(new BasicNameValuePair("phone", params[2]));
-
-            //собераем их вместе и посылаем на сервер
-            postMethod.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-            //получаем ответ от сервера
-            HttpResponse response = hc.execute(postMethod);
-            String resp = EntityUtils.toString(response.getEntity());
-            return resp;
-
-        } catch (Exception e) {
-            System.out.println("Exp=" + e);
-        }
-        return null;
-    }
-
-//    @Override
-//    protected void onPostExecute(Void result) {
-//        super.onPostExecute(result);
-//        showWindow(context, params[1], "+" + params[2]);
-//    }
-
-
-
-}
 /*
-
 // http://www.pvsm.ru/android/22342
 
 String phoneNumber = "";

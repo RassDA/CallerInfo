@@ -7,6 +7,9 @@
     <string name="TESTTEL3">+79500069461</string>
     <!-- TODO перcональная информация - удалить-->
 
+    <string name="APP_PARAMETERS_PAGE">00001110001</string>
+
+
     <string name="SITE_URL">http://checkin.infonum.ru/</string>
     <string name="SITE_API_READ">api/read.php/</string>
     <string name="SITE_API_WRITE">api/write.php/</string>

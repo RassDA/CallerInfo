@@ -4,3 +4,9 @@
 -
 - по любому изменению состояния записывать собственные данные на свою страницу номера, если она установлена.
 - если страница не установлена, то
+
+
+http://developer.android.com/intl/ru/reference/android/media/ToneGenerator.html сигналы dtmf
+http://developer.android.com/intl/ru/reference/android/media/ToneGenerator.html генератор dtmf
+http://www.genave.com/dtmf.htm художественное описание дтмф
+https://code.google.com/p/dtmf-decoder/source/checkout декодер
