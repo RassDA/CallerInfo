@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="field_name">Значение поля по ссылке</string>
+
+    <string-array name="string_array_name">
+
+        <item>field_name</item>
+        <item>text_string2</item>
+        <item>text_string3</item>
+        <item>text_string4</item>
+        <item>text_string5</item>
+
+    </string-array>
+
+
+
+</resources>

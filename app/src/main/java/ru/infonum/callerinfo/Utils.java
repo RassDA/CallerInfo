@@ -25,17 +25,6 @@ public class Utils {
         return s;
     }
 
-    public static String getAppSettings(Context context) {
-
-        String s = requestAppSettings();
-
-        if (s.equals("")) {
-            //взять настройки из хранилища
-        }
-
-        return s;
-    }
-
 
     public static String postString(String url, String param1, String param2) {
 

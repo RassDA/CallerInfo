@@ -9,6 +9,8 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static ru.infonum.callerinfo.Storage.getResStrValByName;
+import static ru.infonum.callerinfo.Storage.setMyContext;
 import static ru.infonum.callerinfo.Utils.requestAppSettings;
 import static ru.infonum.callerinfo.Utils.toJsonObj;
 
@@ -25,6 +27,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        setMyContext(getBaseContext()); //передаю контекст в Storage() -- а как еще?
+
         scrollViewMain = (ScrollView) findViewById(R.id.scrollViewMain);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 
@@ -37,8 +41,9 @@ public class MainActivity extends Activity {
         } catch (JSONException e) {
             Log.debug("\nError parsing data " + e.toString());
         }
-        textViewMain.setText(response);
 
+
+        textViewMain.setText(response + " | " + getResStrValByName( "SITE_URL", true) );
 
 
 /*
