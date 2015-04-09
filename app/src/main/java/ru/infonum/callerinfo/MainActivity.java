@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         context = getApplicationContext(); //передаю контекст в Storage() -- а как еще?
-        st = "";//--------------------------------------------
+        //st = "";//--------------------------------------------
         initRes(context);           //и еще раз
 
         scrollViewMain = (ScrollView) findViewById(R.id.scrollViewMain);

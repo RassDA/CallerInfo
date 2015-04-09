@@ -33,7 +33,7 @@ public class Storage {
             //initExtRes(); //перечитывать с сайта каждый раз заново
             try {
                 val = jsonObject.getString(resStrName);
-                st += " d=" + val; //--------------------------------------------
+                //st += " d=" + val; //--------------------------------------------
             } catch (JSONException e) {
                 //
                 val = "";
@@ -53,10 +53,10 @@ public class Storage {
 
         if (jsonObject != null) {
             tmp = getExtResByName(name);
-            st += " b=" + tmp;//--------------------------------------------
+            //st += " b=" + tmp;//--------------------------------------------
             if (!tmp.equals("")) {
                 val = tmp;
-                st += " c=" + val;//--------------------------------------------
+                //st += " c=" + val;//--------------------------------------------
             }
         }
 
@@ -68,15 +68,15 @@ public class Storage {
 
         //читаем с сайта набор пар в объект
         String s = requestAppSettings();
-        st += " g=" + s;//-----------------------------
+        //st += " g=" + s;//-----------------------------
 
         if (! s.equals("")) {
 
             s = selectJsonLastObj(s);
-            st += " h=" + s;//-----------------------------
+            //st += " h=" + s;//-----------------------------
 
             jsonObject = strToNewJsonObj(s);          // объект там
-            st += " i=" + jsonObject.toString();//-----------------------------
+            //st += " i=" + jsonObject.toString();//-----------------------------
 
         }
 
@@ -94,9 +94,9 @@ public class Storage {
     public static void initRes(Context ctx) {
         context = ctx;
         initExtRes();
-        st += "e ";//-----------------------------
+        //st += "e ";//-----------------------------
         initIntRes();
-        st += "f ";//-----------------------------
+        //st += "f ";//-----------------------------
 
     }
 

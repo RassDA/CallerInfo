@@ -69,7 +69,7 @@ public class Utils {
                         if(p1<p2){
                             out = s.substring(p1,p2+1);
                             out = out.replace("\\" + "\"", "\"");
-                            st += " k=" + out;//-----------------------------
+                            //st += " k=" + out;//-----------------------------
 
                             break;
                         }
@@ -108,13 +108,13 @@ public class Utils {
         try {
 
             jsonObject = new JSONObject(s);
-            st += " l=" + jsonObject.toString();//-----------------------------
+            //st += " l=" + jsonObject.toString();//-----------------------------
 
 
         } catch (JSONException e) {
             Log.debug("\nError parsing data " + e.toString());
         }
-        st += " m=" + jsonObject.toString();//-----------------------------
+        //st += " m=" + jsonObject.toString();//-----------------------------
 
         return jsonObject;
     }
