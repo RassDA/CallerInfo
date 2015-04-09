@@ -1,7 +1,9 @@
 package ru.infonum.callerinfo;
 
 import android.content.Context;
+import android.net.Uri;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import static ru.infonum.callerinfo.Utils.requestAppSettings;
@@ -26,7 +28,7 @@ public class Storage {
     }
 
 
-    public static String getInnerResStrValByName(String resStrName) {
+    public static String getIntResByName(String resStrName) {
         String val = "";
 
         int ids = context.getResources().getIdentifier(resStrName, "string", context.getPackageName());
@@ -34,44 +36,32 @@ public class Storage {
         return val;
     }
 
-    public static String getExtResStrValByName(String resStrName) {
-        String s = requestAppSettings();
-        String[] sa = new String[100];
-        array = sa;
 
-        if (! s.equals("")) {
-            s = selectJsonLastObj(s);
-            js = toJsonObj(s);
-            fromSite = true;
+    public static String getExtResByName(String resStrName) {
+        String val;
+        try {
+            val = js.getString(resStrName);
+        }catch(JSONException e) {
+            val = ""; //
         }
-        return "";
+        return val;
 
     }
 
-    public static String getResStrValByName(String resStrName) {
 
-        return getInnerResStrValByName(resStrName);
-    }
-
-
-    public static String getAppSettings(Context context) {
-
-        String s = requestAppSettings();
-
-        if (! s.equals("")) {
-            s = selectJsonLastObj(s);
-            js = toJsonObj(s);
-            fromSite = true;
-        }else{
-            array = context.getResources().getStringArray(R.array.string_array_name);
+    public static String getByName(String resStrName) {
+        String s = "";
+        if (js != null) {
+            s = getExtResByName(resStrName);
         }
-
-
+        if(s.equals("")){
+           s =  getIntResByName(resStrName);
+        }
         return s;
     }
 
 
-    public static void InitExtSettings() {
+    public static void InitExtRes() {
 
         //читаем с сайта набор пар в объект
         String s = requestAppSettings();
@@ -80,17 +70,29 @@ public class Storage {
             js = toJsonObj(s);          // объект там
             extInitialized = true;
         }else {
+            js = null;
             extInitialized = false;
         }
     }
 
-    public static String[] InitInnerSettings() {
-        //задача: получить объект пар
+
+    public static String[] InitIntRes() {
+        //задача: получить объект с парами
 
         String[] sa = context.getResources().getStringArray(R.array.string_array_name);
 
         return sa;
     }
+
+    public static void InitRes() {
+        InitExtRes();
+
+    }
+
+
+
+
+
 
 
 
