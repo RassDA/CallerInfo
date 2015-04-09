@@ -6,14 +6,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static ru.infonum.callerinfo.Storage.InitInnerSettings;
-import static ru.infonum.callerinfo.Storage.getResStrValByName;
-import static ru.infonum.callerinfo.Storage.setMyContext;
-import static ru.infonum.callerinfo.Utils.requestAppSettings;
-import static ru.infonum.callerinfo.Utils.toJsonObj;
+import static ru.infonum.callerinfo.Storage.*;
 
 public class MainActivity extends Activity {
 
@@ -28,23 +21,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        setMyContext(getBaseContext()); //передаю контекст в Storage() -- а как еще?
+        context = getApplicationContext(); //передаю контекст в Storage() -- а как еще?
+        st = "";//--------------------------------------------
+        initRes(context);           //и еще раз
 
         scrollViewMain = (ScrollView) findViewById(R.id.scrollViewMain);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
 
-        //загрузить отладочные настройки с сайта
-        String response = requestAppSettings();
 
-        JSONObject js = toJsonObj(response);
-        try {
-            response = js.get("1").toString() + "/" +js.get("2").toString();
-        } catch (JSONException e) {
-            Log.debug("\nError parsing data " + e.toString());
-        }
-
-
-        textViewMain.setText(response + " | " + InitInnerSettings()[0] + InitInnerSettings()[10]);
+        //textViewMain.setText(st);
+        textViewMain.setText(getByName("SITE_URL") + " | " + st);
 
 
 /*
