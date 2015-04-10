@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import static ru.infonum.callerinfo.PopUpWindow.closeWindow;
 import static ru.infonum.callerinfo.PopUpWindow.showWindow;
 import static ru.infonum.callerinfo.Utils.postString;
+import static ru.infonum.callerinfo.Storage.*;
 
 
 //TODO сделать локальное хранилище для собственного номера
@@ -71,6 +72,7 @@ public class CallReceiver extends BroadcastReceiver {
 
 
                 // лезем на страницу вызывающего телефона и получаем все его данные, какие есть
+                //String text = postString(getByName("SITE_URL") + getByName("SITE_API_READ"), "", phoneNumber.trim());
                 String text = postString(context.getString(R.string.SITE_URL) + context.getString(R.string.SITE_API_READ), "", phoneNumber.trim());
 
 

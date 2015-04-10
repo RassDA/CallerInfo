@@ -17,94 +17,51 @@ public class Storage {
     static Context context;
     static String st;
     static JSONObject js;
-
-    public static String getIntResByName(String resStrName) {
-        String val = "";
-
-        int ids = context.getResources().getIdentifier(resStrName, "string", context.getPackageName());
-        val = context.getString(ids);
-        return val;
-    }
+    static boolean debug = false;
+    static String[] resourcesArray;
 
 
-    public static String getExtResByName(String resStrName) {
-        String val = "";
-        if (jsonObject != null) {
-            //initExtRes(); //перечитывать с сайта каждый раз заново
-            try {
-                val = jsonObject.getString(resStrName);
-                //st += " d=" + val; //--------------------------------------------
-            } catch (JSONException e) {
-                //
-                val = "";
-            }
+    public static void initRes() {
+        String[] resources = context.getResources().getStringArray(R.array.string_array_name); //не исп.
+        String s= "";
+        s = requestAppSettings();
+        //if (debug) st += " g=" + s;//-----------------------------
+
+        if (!s.equals("")) {
+            s = selectJsonLastObj(s);
+            //if (debug) st += " h=" + s;//-----------------------------
+
+            jsonObject = strToNewJsonObj(s);          // объект там
+            //if (debug) st += " i=" + jsonObject.toString();//-----------------------------
         }
-        return val;
 
     }
 
 
     public static String getByName(String name) {
+        String out = "";
         String val = "";
-        String tmp = "";
-        st += " j=" + name;//-----------------------------
-
-        val = getIntResByName(name); //работает
-
+        //name = "\"" + name + "\"";
+        st += " name=" + name + ";";
+        out = context.getString(context.getResources().getIdentifier(name, "string", context.getPackageName()));
         if (jsonObject != null) {
-            tmp = getExtResByName(name);
-            //st += " b=" + tmp;//--------------------------------------------
-            if (!tmp.equals("")) {
-                val = tmp;
-                //st += " c=" + val;//--------------------------------------------
+            try {
+                val = jsonObject.getString(name);
+                st += "v=" + val + ";";
+            } catch (JSONException e) {
+                val = "";
+            }
+            if (val != null && !val.equals("")) {
+                out = val;
             }
         }
 
-        return val;
+        st += out;//-----------------------------
+        return out;
     }
-
-
-    public static void initExtRes() {
-
-        //читаем с сайта набор пар в объект
-        String s = requestAppSettings();
-        //st += " g=" + s;//-----------------------------
-
-        if (! s.equals("")) {
-
-            s = selectJsonLastObj(s);
-            //st += " h=" + s;//-----------------------------
-
-            jsonObject = strToNewJsonObj(s);          // объект там
-            //st += " i=" + jsonObject.toString();//-----------------------------
-
-        }
-
-    }
-
-
-    public static String[] initIntRes() {
-        //задача: получить объект с парами
-        // массив для тестов
-        String[] sa = context.getResources().getStringArray(R.array.string_array_name);
-
-        return sa;
-    }
-
-    public static void initRes(Context ctx) {
-        context = ctx;
-        initExtRes();
-        //st += "e ";//-----------------------------
-        initIntRes();
-        //st += "f ";//-----------------------------
-
-    }
-
-
-
-
 
 
 
 
 }
+

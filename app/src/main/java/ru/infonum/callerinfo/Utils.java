@@ -21,16 +21,6 @@ public class Utils {
     static JSONObject jsonObject;
 
 
-    public static String requestAppSettings() {
-        String s = postString(APP_PARAMETERS_PAGE_URL, "", PLUS_SIGN + APP_PARAMETERS_PAGE_NAME);
-        //st += " o=" + s;//-----------------------------
-
-        s = selectJsonLastObj(s);
-
-        return s;
-    }
-
-
     public static String postString(String url, String param1, String param2) {
 
         String response = "";
@@ -39,14 +29,22 @@ public class Utils {
 
         try {
             response = httpPost.get();
-            if (response == null) response = "";
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        if (response == null) response = "";
 
         return response;
+    }
+
+
+    public static String requestAppSettings() {
+        String s = postString(APP_PARAMETERS_PAGE_URL, "", PLUS_SIGN + APP_PARAMETERS_PAGE_NAME);
+        if (debug) st += " o=" + s;//-----------------------------
+
+        return s;
     }
 
 
@@ -54,67 +52,48 @@ public class Utils {
         //ищет текстографически последний объект в {} в строке.
         //TODO неправильно, что находит вложенный вместо объекта верхнего уровня
 
-        String tmp = s;
         String out = "";
-        int p1;
-        int p2;
-
+        int p1 = 0;
+        int p2 = 0;
+//                                                         {llh{loihloh}{{{{{hjhhh
+        String tmp = s;
         if (s != null && s.length() > 1) {
             do {
-
                 p1 = tmp.lastIndexOf("{");
-                if(p1 >=  0 ){
+                if(p1 >=  0 ){                          //есть откр скобка
                     p2 = tmp.lastIndexOf("}");
-                    if(p2 > 0){
-                        if(p1<p2){
-                            out = s.substring(p1,p2+1);
+                    if(p2 > 0){                         //есть закр скобка
+                        if(p1<p2){                      //скобки парные
+                            out = tmp.substring(p1, p2 + 1);
                             out = out.replace("\\" + "\"", "\"");
-                            //st += " k=" + out;//-----------------------------
+                            //out = out.replace(" ", "");
+                            if (debug) st += " k=" + out;//-----------------------------
 
                             break;
                         }
-                        tmp=tmp.substring(0, p2+1);
+                        tmp=tmp.substring(0, p2+1);     //обе скобки есть, но закр скобка стоит впереди - берем подстроку до нее вкл
+                        if (debug) st += " substr=" + tmp;//-----------------------------
+
                     }
                 }
 
-            } while (p1 >= 0);
+            } while (p1 >= 0 && p2 > 0); //пока в подстроке есть обе скобки
         }
 
         return out;
     }
 
 
-    public static String selectJsonActiveObj(String s) {
-        //последний непустой объект после последнего пустого, если пустой есть
-        //зачем?
-        String string = "";
-        String out= "";
-
-        do {
-            string = selectJsonLastObj(s);
-
-            string = s.substring(0, s.lastIndexOf(string));
-            if (string.length() == 2) {
-
-            }
-        } while(false);
-
-        return s;
-    }
-
 
     public static JSONObject strToNewJsonObj(String s) {
-        st += " n=" + s;//-----------------------------------
+
+        if (debug) st += " n=" + s;//-----------------------------------
+
         try {
-
             jsonObject = new JSONObject(s);
-            //st += " l=" + jsonObject.toString();//-----------------------------
-
-
         } catch (JSONException e) {
             Log.debug("\nError parsing data " + e.toString());
         }
-        //st += " m=" + jsonObject.toString();//-----------------------------
 
         return jsonObject;
     }

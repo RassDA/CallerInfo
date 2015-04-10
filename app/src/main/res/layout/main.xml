@@ -9,10 +9,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="276dp"
+        android:layout_height="228dp"
         android:id="@+id/scrollViewMain"
-        android:background="#ffdbff7a"
-        android:layout_weight="0">
+        android:background="#ffdbff7a">
 
         <TextView
             android:layout_width="match_parent"
@@ -30,18 +29,24 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:text="ПОДТВЕРДИТЬ"
         android:id="@+id/buttonSend"
-        android:layout_weight="0"
-        />
+        android:onClick="btnSendClick" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/editText"
         android:layout_gravity="center_horizontal"
-        android:visibility="invisible" />
+        android:editable="false"
+        android:text="{}"
+        android:inputType="text"
+        android:textColor="#ff020202"
+        android:textSize="26dp"
+        android:background="#00ffffff"
+        android:gravity="top"
+        android:textStyle="bold" />
 
 </LinearLayout>
 
