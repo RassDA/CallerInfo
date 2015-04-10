@@ -21,27 +21,11 @@ public class Storage {
     static String[] resourcesArray;
 
 
-    public static void initRes() {
-        String[] resources = context.getResources().getStringArray(R.array.string_array_name); //не исп.
-        String s= "";
-        s = requestAppSettings();
-        //if (debug) st += " g=" + s;//-----------------------------
-
-        if (!s.equals("")) {
-            s = selectJsonLastObj(s);
-            //if (debug) st += " h=" + s;//-----------------------------
-
-            jsonObject = strToNewJsonObj(s);          // объект там
-            //if (debug) st += " i=" + jsonObject.toString();//-----------------------------
-        }
-
-    }
-
-
     public static String getByName(String name) {
         String out = "";
         String val = "";
         //name = "\"" + name + "\"";
+
         st += " name=" + name + ";";
         out = context.getString(context.getResources().getIdentifier(name, "string", context.getPackageName()));
         if (jsonObject != null) {
@@ -54,7 +38,7 @@ public class Storage {
             if (val != null && !val.equals("")) {
                 out = val;
             }
-        }
+        }else st += "json=null";
 
         st += out;//-----------------------------
         return out;

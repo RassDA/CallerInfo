@@ -20,12 +20,10 @@ import static ru.infonum.callerinfo.Utils.strToNewJsonObj;
 
 public class MainActivity extends Activity {
 
-    public boolean ownNumVerified = false;
     String phoneNum;
     TextView textViewMain;
     EditText editText;
     ScrollView scrollViewMain;
-    Button buttonSend;
     JSONObject jj;
 
     @Override
@@ -33,8 +31,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         context = getApplicationContext(); //передаю контекст в Storage() -- а как еще?
-
-        //initRes();
 
         scrollViewMain = (ScrollView) findViewById(R.id.scrollViewMain);
         textViewMain = (TextView) findViewById(R.id.textViewMain);
@@ -59,7 +55,6 @@ public class MainActivity extends Activity {
             phoneNum = getByName("TESTTEL");
 
             phoneNum = ownNum.interact(phoneNum); //запустить процедуру установления своего номера
-            //phoneNum = ownNum.formatSave(phoneNum); //проверить существование, допустимость и привести
 
         }
 

@@ -5,6 +5,7 @@ package ru.infonum.callerinfo;
  */
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import java.sql.Timestamp;
 import java.util.Random;
 
+import static ru.infonum.callerinfo.Storage.getByName;
+
 
 public class SmsAuthMain extends Activity {
 
@@ -33,7 +36,7 @@ public class SmsAuthMain extends Activity {
     public static String randS;
     public static String str;
     public static final int MAXRND = 4;
-
+    Context context;
 //Нет смысла возвращать управление в основную активность
 
     @Override
@@ -52,13 +55,15 @@ public class SmsAuthMain extends Activity {
         Log.d(TAG, "101-- Time=" + new java.sql.Timestamp(System.currentTimeMillis()).toString());
 
         // все это инициализация для первого запуска
+        viewTel.setText(getByName("TESTTEL"));
+
         randS = getRnd(MAXRND); // для первого раза генерируем здесь
         msgTxt = getString(R.string.AUTH_STR_RAND) + randS; // подготавливаем строку для текста смс из url и случ числа
 
         viewTxt.setText(msgTxt); // выводим строку в поле текста смс
 
-        editor.putString(getString(R.string.KEY_RND), msgTxt).commit();//apply(); //записываем всю строку полностью в файл
-        editor.putString(getString(R.string.KEY_SMS), "--Init").commit();//apply(); // записываем какой-нибудь начальный текст, чтобы были видны его  изменения
+        editor.putString(getString(R.string.KEY_RND), msgTxt).apply(); //записываем всю строку полностью в файл
+        editor.putString(getString(R.string.KEY_SMS), "--Init").apply(); // записываем какой-нибудь начальный текст, чтобы были видны его  изменения
 
         Log.d(TAG, "015-- Time=" + new java.sql.Timestamp(System.currentTimeMillis()).toString());
         Log.d(TAG, "016-- msgTxt=" + msgTxt);
@@ -92,7 +97,7 @@ public class SmsAuthMain extends Activity {
                                 // Здесь все происходит после получения ответа от сервиса
                                 // предполагаем, что ключ правильный
 
-                                editor.putString(getString(R.string.KEY_RND), msgTxt).commit(); //apply(); //записываем новое случайное для следующего запроса                        //записываем то значение, которое в данный момент (после получения ответной смс) выведено в поле
+                                editor.putString(getString(R.string.KEY_RND), msgTxt).apply(); //записываем новое случайное для следующего запроса                        //записываем то значение, которое в данный момент (после получения ответной смс) выведено в поле
                                 str = spSms.getString(key, ""); // прочитаем новое значение ключа, записанное сервисом
 
                                 Toast.makeText(getApplication().getBaseContext(), "014--Ответ=" + str, Toast.LENGTH_LONG).show();
